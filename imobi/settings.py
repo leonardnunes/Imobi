@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'imobi.wsgi.application'
+# WSGI_APPLICATION = 'imobi.wsgi.application'
 
 
 # Database
