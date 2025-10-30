@@ -19,7 +19,7 @@
         {% for imovel in imoveis %}
 
             <div class="col-md cont">
-                <div class="card_imovel">
+                <div class="card_imovel h-100">
                     <img class="img_capa_imovel" src="{{imovel.imagens.all.0.img.url}}">
                     <div class="informacoes_imoveis">
                         <a class="a_none" href="{% url 'imovel' imovel.id %}"><h4 class="valor">R$ {{imovel.valor}}</h4></a>

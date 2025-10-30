@@ -6,80 +6,66 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 25px;
     display: inline;
-
 }
 
 .card_imovel{
     background-color: #30CD9E;
-
-    width: 20rem;
+    width: 100%;
     margin-top: 50px;
     border-radius: 26px;
+    display: flex;
+    flex-direction: column;
 }
 
 .img_capa_imovel{
-
     width: 100%;
     border-top-left-radius: 26px;
     border-top-right-radius: 26px;
-
+    height: 200px;
+    object-fit: cover;
 }
 
 .informacoes_imoveis{
-
     padding: 20px;
     color: white;
-
+    flex-grow: 1;
 }
 
-
 .valor{
-
     font-weight: bold;
     border-bottom: 1px solid white;
 }
 
 .btn_filtrar{
-
     border: none;
     background-color: transparent;
     border: 2px solid #30CD9E;
     color: #30CD9E;
     padding: 5px 10px 5px 10px;
     font-weight: bold;
-
 }
 
-
 .titulo_filtrar{
-
     color:#30CD9E;
     font-weight: bold;
     font-size: 30px;
-
 }
 
 .btn_filtrar_modal{
-
     border: none;
     color: white;
     background-color: #30CD9E;
     font-weight: bold;
     font-size: 20px;
-
 }
 
 .a_none{
-
     color: white;
-
 }
 
 .a_none:hover{
-
     text-decoration: none;
     color: white;
-
 }
 
 .titulo_especificacao{
@@ -87,54 +73,51 @@
     font-weight: bold;
     margin-top: 20px;
     font-size: 40px;
-
-
 }
 
 .especificacao{
     font-size: 30px;
     font-weight: bold;
-
-
 }
 
 .especificacao_endereco{
     font-size: 25px;
-
 }
 
 .btn_agendar_visita{
-
     border: none;
     background-color: #30CD9E;
     color: white;
     font-weight: bold;
     font-size: 20px;
     padding: 5px 10px 5px 10px;
-
 }
 
 .div_possivel_interesse{
-
     text-align: left;
-
 }
 
 .btn_agendar{
-
     border: none;
     background-color: #30CD9E;
     color: white;
     font-weight: bold;
     font-size: 20px;
     padding: 5px 10px 5px 10px;
-
 }
 
 .btn_agendar:hover{
-
     text-decoration: none;
     color: white;
-
-
 }
+
+.table-striped tbody tr th,
+.table-striped tbody tr td {
+    vertical-align: middle !important;
+}
+
+.table-striped tbody tr th img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
