@@ -1,9 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from stdimage.models import StdImageField
 
 class Imagem(models.Model):
-    img = models.ImageField(upload_to='img')
+    img = StdImageField(
+        upload_to='img',
+        variations={
+            'card': (320, 200, True),
+            'carousel': (1200, 675, True)
+        },
+        delete_orphans=True
+    )
 
     def __str__(self) -> str:
         return self.img.url
@@ -38,7 +45,8 @@ class Imovel(models.Model):
                       ('C', 'Casa'))
 
     imagens = models.ManyToManyField(Imagem)
-    valor = models.FloatField()
+
+    valor = models.DecimalField(max_digits=12, decimal_places=2)
     quartos = models.IntegerField()
     tamanho = models.FloatField()
     cidade = models.ForeignKey(Cidade, on_delete=models.DO_NOTHING)

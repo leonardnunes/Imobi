@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
+
 {% block 'head' %}
 <link rel="stylesheet" href="{% static 'plataforma/css/home.css' %}">
 {% endblock %}
@@ -9,31 +11,42 @@
     <div style="text-align: center" class="container">
         <br>
         <br>
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                {% for img in imovel.imagens.all %}
-                    <div class="carousel-item {% if forloop.first %} active {% endif %}" >
-                        <img class="d-block w-100" src="{{img}}" alt="First slide">
-                    </div>
-                {% endfor %}
 
+        {% if imovel.imagens.all %}
+            <div id="carouselExampleControls" class="carousel slide detalhe-imagem-container" data-ride="carousel">
+
+                <div class="carousel-inner">
+
+                    {% for img in imovel.imagens.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                            <img class="d-block w-100" src="{{ img.img.carousel.url }}" alt="Imagem do imóvel">
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+        {% else %}
+            <div class="detalhe-imagem-container">
+                 <h4 style="color: #888;">Imóvel sem fotos cadastradas</h4>
+            </div>
+        {% endif %}
 
 
         <div class="row">
             <div class="col-md">
                 <h3 class="titulo_especificacao">Valor</h3>
-                <p class="especificacao">R$ {{imovel.valor}}</p>
+                <p class="especificacao">R$ {{imovel.valor|intcomma}}</p>
             </div>
 
     <div class="col-md">
@@ -72,10 +85,14 @@
     <div class="row">
         {% for sugestao in sugestoes %}
             <div class="col-md cont">
-                <div class="card_imovel">
-                    <img class="img_capa_imovel" src="{{sugestao.imagens.all.0.img.url}}">
+                <div class="card_imovel h-100">
+
+                    {% if sugestao.imagens.all.0 %}
+                        <img class="img_capa_imovel" src="{{sugestao.imagens.all.0.img.card.url}}">
+                    {% endif %}
+
                     <div class="informacoes_imoveis">
-                    <a class="a_none" href="{% url 'imovel' sugestao.id %}"><h4 class="valor">R$ {{sugestao.valor}}</h4></a>
+                    <a class="a_none" href="{% url 'imovel' sugestao.id %}"><h4 class="valor">R$ {{sugestao.valor|intcomma}}</h4></a>
                     <p>{{sugestao.rua}}, {{sugestao.cidade}}</p>
                     <br>
                     <img width="7%" src="{% static 'plataforma/img/heart.png' %}">

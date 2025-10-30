@@ -26,7 +26,11 @@
 
             {% for visita in visitas %}
                 <tr>
-                    <th><img width="80" src="{{visita.imovel.imagens.all.0}}"></th>
+                    <th>
+                        {% if visita.imovel.imagens.all.0 %}
+                            <img src="{{visita.imovel.imagens.all.0.img.card.url}}">
+                        {% endif %}
+                        </th>
                     <td>{{visita.imovel.rua}}, {{visita.imovel.cidade}}</td>
                     <td>{{visita.dia}}/{{visita.horario}}</td>
                     <td>
